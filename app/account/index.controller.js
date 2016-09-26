@@ -1,28 +1,32 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('app')
-        .controller('Account.IndexController', Controller);
 
-    function Controller($window, UserService, FlashService) {
-        var vm = this;
+    var app = angular.module('app');
+    app.controller('Account.IndexController', function($scope, $window, UserService, FlashService){
 
-        vm.user = null;
-        vm.saveUser = saveUser;
-        vm.deleteUser = deleteUser;
 
+        //var vm = this;
+
+        //vm.user = null;
+        $scope.user = null;
+        //vm.saveUser = saveUser;
+        $scope.user = saveUser;
+        //vm.deleteUser = deleteUser;
+        $scope.deleteUser = deleteUser;
+        
         initController();
 
         function initController() {
             // get current user
             UserService.GetCurrent().then(function (user) {
-                vm.user = user;
+                //vm.user = user;
+                $scope.user = user
             });
         }
 
         function saveUser() {
-            UserService.Update(vm.user)
+            UserService.Update($scope.user)
                 .then(function () {
                     FlashService.Success('User updated');
                 })
@@ -32,7 +36,7 @@
         }
 
         function deleteUser() {
-            UserService.Delete(vm.user._id)
+            UserService.Delete($scope.user._id)
                 .then(function () {
                     // log user out
                     $window.location = '/login';
@@ -41,6 +45,6 @@
                     FlashService.Error(error);
                 });
         }
-    }
+    })
 
 })();

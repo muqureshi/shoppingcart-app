@@ -1,23 +1,41 @@
 ﻿(function () {
     'use strict';
 
-    angular
-        .module('app')
-        .controller('Home.IndexController', Controller);
+   
 
-    function Controller(UserService) {
-        var vm = this;
+    var app = angular.module('app');
+    app.controller('Home.IndexController', function($scope, UserService, ShoppingService, ngCart){
 
-        vm.user = null;
+        //ngCart.setTaxRate(7.5);
+        //ngCart.setShipping(2.99);
+
+        $scope.items = null;
+
+        $scope.user = null;
 
         initController();
 
         function initController() {
             // get current user
             UserService.GetCurrent().then(function (user) {
-                vm.user = user;
+                $scope.user = user;
             });
+
+            ShoppingService.getItems().then(function (items){
+                $scope.items = items;
+                console.log($scope.items);
+            })
+
         }
-    }
+
+
+
+
+
+
+
+
+
+    })
 
 })();

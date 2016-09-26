@@ -1,1 +1,50 @@
-﻿<h1>Hi {{vm.user.firstName}}!!</h1>
+﻿<div class="row">
+
+    <div class="col-xs-offset-8 col-xs-4">
+        <h3>Summary <span>(ngcart-summary)</span></h3>
+
+        <ngcart-summary template-url="/ng-cart/summary.html"></ngcart-summary>
+    </div>
+</div>
+<hr />
+
+<h3>Add to Cart <span>(ngcart-addtocart)</span></h3>
+<!--<div class="row">-->
+    <!--<div class="col-xs-6 col-sm-3">-->
+        <!--<h4>My Item #1</h4>-->
+        <!--<p> $10.99</p>-->
+        <!--<ngcart-addtocart id="item1" name="My Item #1" price="10.99" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>-->
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-sm-3">-->
+        <!--<h4>My Item #2</h4>-->
+        <!--<p> $15.29</p>-->
+        <!--<ngcart-addtocart id="item2" name="My Item #2" price="15.29" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>-->
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-sm-3">-->
+        <!--<h4>My Item #3</h4>-->
+        <!--<p> $25.75</p>-->
+        <!--<ngcart-addtocart id="item3" name="My Item #3" price="25.75" quantity="3" quantity-max="10">Add to Cart</ngcart-addtocart>-->
+    <!--</div>-->
+    <!--<div class="col-xs-6 col-sm-3">-->
+        <!--<h4>My Item #4</h4>-->
+        <!--<p> $29.25</p>-->
+        <!--<ngcart-addtocart id="item4" name="My Item #4" price="29.25" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<h1>Hi {{user.firstName}}!!</h1>
+
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-4 col-md-3" ng-repeat="I in items">
+            <div class="thumbnail">
+                <img src="public/images/{{I.image}}" alt="...">
+                <div class="caption">
+                    <h3>{{I.name}} - ${{I.price}}</h3>
+                    <ngcart-addtocart id="{{I._id}}" name="{{I.name}}" price="{{I.price}}" quantity="1" quantity-max="10">Add to Cart</ngcart-addtocart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
